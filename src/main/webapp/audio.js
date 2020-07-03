@@ -4,10 +4,32 @@ const audioContext = new AudioContext();
 const audioElement = document.querySelector('audio');
 const track = audioContext.createMediaElementSource(audioElement);
 
-const playButton = document.querySelector('button');
-track.connect(audioContext.destination);
-playButton.addEventListener('click', function() {
 
+const playButton = document.getElementById('start');
+const resumeButton = document.getElementById('resume');
+const stopButton = document.getElementById('stop');
+const playbackControl = document.getElementById('playback');
+const playbackValue = document.getElementById('playback-value');
+
+playButton.onclick = function(){
+    if(resumeButton.dataset.playing  === 'false'){
+        audioElement.play();
+        this.setAttribute('disabled', 'disabled');
+        resumeButton.dataset.playing = 'true';
+    }
+}
+
+stopButton.onclick = function () {
+    if(resumeButton.dataset.playing  === 'true'){
+        audioElement.currentTime = 0;
+        audioElement.pause();
+        playButton.removeAttribute('disabled')
+        playButton.setAttribute('enabled', 'enabled');
+        resumeButton.dataset.playing = 'false';
+    }
+}
+
+resumeButton.addEventListener('click', function() {
 
     if (audioContext.state === 'suspended') {
         audioContext.resume();
@@ -24,7 +46,9 @@ playButton.addEventListener('click', function() {
 }, false);
 
 audioElement.addEventListener('ended', () => {
-    playButton.dataset.playing = 'false';
+    resumeButton.dataset.playing = 'false';
+    playButton.removeAttribute('disabled')
+    playButton.setAttribute('enabled', 'enabled');
 }, false);
 
 const gainNode = audioContext.createGain();
@@ -44,5 +68,16 @@ const pannerControl = document.querySelector('#panner');
 pannerControl.addEventListener('input', function() {
     panner.pan.value = this.value;
 }, false);
+playbackControl.oninput = function(){
+    audioElement.playbackRate = playbackControl.value;
+    playbackValue.innerHTML = playbackControl.value;
+}
+document.addEventListener("keydown", function (event) {
+    if(event.which === 39){
+        audioElement.currentTime = audioElement.currentTime + 30;
+    } else if (event.which === 37){
+        audioElement.currentTime = audioElement.currentTime - 30;
+    }
 
+})
 track.connect(gainNode).connect(panner).connect(audioContext.destination);
