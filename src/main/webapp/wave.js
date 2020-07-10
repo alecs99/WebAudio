@@ -3,15 +3,21 @@ const resumeButton = document.getElementById('resume');
 const rewindButton = document.getElementById('rewind');
 const forwardButton = document.getElementById('fForward');
 const stopButton = document.getElementById('stop');
+const muteButton = document.getElementById('mute');
 const playbackControl = document.getElementById('playback');
 const playbackValue = document.getElementById('playback-value');
 const pannerControl = document.querySelector('#panner');
 const volumeControl = document.querySelector('#volume');
+const regionDeleteButton = document.getElementById('regionDelete');
+const divForm = document.getElementById('form');
 
 //Crearea obiectului de tip wavesurfer
 var wavesurfer = WaveSurfer.create({
     container: '#soundWave',
-    progressColor: "#03a9f4"
+    progressColor: "#03a9f4",
+    plugins: [
+        WaveSurfer.regions.create()  //Plugin necesar pentru cue points
+    ]
 });
 
 //Crearea unui filtru de tip panner
@@ -38,6 +44,14 @@ stopButton.onclick = function () {
         document.getElementById("jump"). disabled = false;
         resumeButton.dataset.playing = 'false';
     }
+}
+
+//Buton de mute, respectiv unmute
+muteButton.onclick = function (){
+    if(wavesurfer.getMute() === false)
+         wavesurfer.setMute(true);
+    else if(wavesurfer.getMute() === true)
+         wavesurfer.setMute(false);
 }
 
 //Buton de resume
@@ -101,5 +115,45 @@ forwardButton.onclick = function(){
     wavesurfer.skip(parseFloat(secs));
 }
 
-//Incarcare fisier audio
-wavesurfer.load('test.mp3');
+//Permite selectarea cu mouse a unei regiuni
+wavesurfer.on('ready', function () {
+    wavesurfer.enableDragSelection({
+        color: "rgba(255, 0, 0, 0.5)"
+    });
+})
+
+//Cand facem click pe regiune va porni sectiunea respectiva
+wavesurfer.on('region-click', function (region) {
+    region.play();
+
+    //In momentul apasarii va aparea un formular pentru a completa o nota a regiunii selectate
+    divForm.style.visibility = "visible";
+
+    //In inputul de start si end vom pune datele de start si sfarsit al regiunii respective
+    document.getElementById('startTime').value = parseInt(region.start);
+    document.getElementById('endTime').value = parseInt(region.end);
+
+    //Odata ce a iesit din regiune player-ul isi va continua rularea initiala
+    region.once('out', function () {
+        wavesurfer.play();
+    })
+})
+
+//In momentul in care facem double click pe o regiune sectiunea va intra in loop
+wavesurfer.on('region-dblclick', function (region) {
+    region.playLoop();
+})
+
+//Permite stergerea tuturor regiunilor
+regionDeleteButton.onclick = function(){
+    wavesurfer.clearRegions();
+}
+
+//In momentul incarcarii paginii vom incarca fisierul audio ales
+window.onload = function () {
+    var myFile = localStorage['audioFile'];
+    localStorage.removeItem( 'audioFile' );
+
+    wavesurfer.load(myFile);
+}
+

@@ -4,3 +4,7 @@
     display: block;
     background-color: black;
 }
+#form{
+    display: block;
+    visibility: hidden;
+}
