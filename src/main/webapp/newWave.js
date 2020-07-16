@@ -49,9 +49,9 @@ stopButton.onclick = function () {
 //Buton de mute, respectiv unmute
 muteButton.onclick = function (){
     if(wavesurfer.getMute() === false)
-         wavesurfer.setMute(true);
+        wavesurfer.setMute(true);
     else if(wavesurfer.getMute() === true)
-         wavesurfer.setMute(false);
+        wavesurfer.setMute(false);
 }
 
 //Buton de resume

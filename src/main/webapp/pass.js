@@ -1,10 +1,4 @@
-function getEventTarget(e) {
-    e = e || window.event;
-    return e.target || e.srcElement;
+function playSong(filePath){
+    localStorage.setItem( 'audioFile', filePath);
+    location.replace("listen.jsp");
 }
-
-var ul = document.getElementById('list');
-ul.onclick = function(event) {
-    var target = getEventTarget(event);
-    localStorage.setItem( 'audioFile', target.innerHTML);
-};

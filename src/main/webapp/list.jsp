@@ -1,4 +1,6 @@
-<%--
+<%@ page import="model.User" %>
+<%@ page import="model.File" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: alc
   Date: 7/8/20
@@ -13,9 +15,13 @@
 <body>
 <h2>Choose your audio</h2>
 <ul id="list">
-    <li><a href="listen.jsp">test.mp3</a></li>
-    <li><a href="listen.jsp">test2.mp3</a></li>
-    <li><a href="listen.jsp">got.mp3</a></li>
+    <%
+        User user = (User) request.getAttribute("user");
+        List<File> audioFiles = user.getAudioFiles();
+        for(File audioFile:audioFiles){
+            String filePath = audioFile.getFilePath();%>
+            <li onclick="playSong('<%=filePath%>')"><%=audioFile.toString()%></li>
+       <%}%>
 </ul>
 <script src="pass.js"></script>
 </body>
