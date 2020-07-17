@@ -15,8 +15,14 @@
 <h3>Choose your option</h3>
 <ul>
     <li><a href="ListServlet">Play an audio file</a></li>
-    <li><a href="AddFileServlet">Add/Remove song</a></li>
+    <li><a href="AddFileServlet">Add an audio file</a></li>
+    <li><a href="RemoveFileServlet">Remove an audio file</a></li>
     <li><a href="AccountServlet">Manage your account</a></li>
+    <%
+    Boolean isAdmin = (Boolean) request.getAttribute("isAdmin");
+    if(isAdmin){%>
+        <li><a href="AdminServlet">Administrative options</a></li>
+    <%}%>
 </ul>
 </body>
 </html>

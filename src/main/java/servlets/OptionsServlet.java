@@ -17,6 +17,7 @@ public class OptionsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User currentUser = (User) session.getAttribute("loggedUser");
+        req.setAttribute("isAdmin", currentUser.getAdmin());
         req.setAttribute("username", currentUser.getUsername());
         resp.setContentType("text/html");
         RequestDispatcher rs = req.getRequestDispatcher("userOptions.jsp");
