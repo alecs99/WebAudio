@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<h3>Asculta aici:</h3>
+<h3>Listen</h3>
 <div id="soundWave"></div>
 
 <button id="start">Play</button>
