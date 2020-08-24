@@ -22,6 +22,7 @@ public class AddUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<File> audioFiles = new ArrayList<>();
+        //Preiau fisierele audio din BD*/
         try {
             audioFiles = mainRepository.getAllFiles();
         } catch (SQLException throwables) {
@@ -46,9 +47,10 @@ public class AddUserServlet extends HttpServlet {
         List<String> audioFiles = Arrays.asList(req.getParameterValues("audios"));
         int userId = 0;
         try {
-            userId = mainRepository.getNextUserId();
             mainRepository.addUser(user);
+            userId = mainRepository.getUserId(user.getUsername());
             mainRepository.addToUser(userId, audioFiles);
+            System.out.println(audioFiles);
             RequestDispatcher rs = req.getRequestDispatcher("success.jsp");
             rs.forward(req,resp);
         } catch (SQLException throwables) {

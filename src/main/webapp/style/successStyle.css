@@ -1,0 +1,10 @@
+.card{
+    margin-top: 20%;
+    margin-left: 32%;
+    max-width: 450px;
+    max-height: 600px;
+    background-color: rgba(46, 53, 61, 0.7);
+}
+.text-muted{
+    color: #dedede !important;
+}

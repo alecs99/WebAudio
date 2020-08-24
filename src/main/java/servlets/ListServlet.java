@@ -19,7 +19,7 @@ public class ListServlet extends HttpServlet {
         User currentUser = (User) session.getAttribute("loggedUser");
         req.setAttribute("user", currentUser);
         resp.setContentType("text/html");
-        RequestDispatcher rs = req.getRequestDispatcher("list.jsp");
+        RequestDispatcher rs = req.getRequestDispatcher("fileSelect.jsp");
         rs.forward(req,resp);
     }
 }

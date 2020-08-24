@@ -26,12 +26,19 @@ public class User {
         this.audioFiles = audioFiles;
     }
 
-    public int getIdUser() {
-        return idUser;
+    //Constructor pentru adaugarea unui nou utilizator
+    public User(String username, String password, String firstName, String lastName, String email, Boolean admin) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.admin = admin;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    /*Metode de tip getter si setter necesare in cadrul aplicatiei*/
+    public int getIdUser() {
+        return idUser;
     }
 
     public String getUsername() {
@@ -46,52 +53,29 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
     public Boolean getAdmin() {
         return admin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
     }
 
     public List<File> getAudioFiles() {
         return audioFiles;
     }
 
-    public void setAudioFiles(List<File> audioFiles) {
-        this.audioFiles = audioFiles;
-    }
-
     @Override
     public String toString() {
-        return "User have the id " + idUser + ", username " + username + ", firstName " + firstName + ", lastName " +
-                lastName + ", email " + email + ", is/ is not" + admin;
+        return "User has the id " + idUser + ", username " + username + ", first name " + firstName + ", last name " +
+                lastName + ", email " + email + ", admin:" + admin;
     }
 }

@@ -10,6 +10,7 @@ import java.io.IOException;
 
 @WebServlet("/AccountServlet")
 public class AccountServlet extends HttpServlet {
+    //Utilizatorul este redirectionat catre pagina de manage Account
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher rs = req.getRequestDispatcher("manageAccount.jsp");

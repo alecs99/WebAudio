@@ -1,0 +1,9 @@
+.card{
+    margin-top: 12%;
+    max-width: 450px;
+    max-height: 600px;
+    background-color: rgba(46, 53, 61, 0.7);
+}
+input{
+    margin-right: 8px;
+}

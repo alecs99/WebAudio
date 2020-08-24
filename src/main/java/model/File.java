@@ -16,36 +16,29 @@ public class File {
         this.filePath = filePath;
     }
 
-    public int getIdFile() {
-        return idFile;
+    public File(String fileName, String author, String length, String filePath) {
+        this.fileName = fileName;
+        this.author = author;
+        this.length = length;
+        this.filePath = filePath;
     }
 
-    public void setIdFile(int idFile) {
-        this.idFile = idFile;
+    /*Metode de tip getter si setter necesare in cadrul aplicatiei*/
+
+    public int getIdFile() {
+        return idFile;
     }
 
     public String getFileName() {
         return fileName;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
     public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public String getLength() {
         return length;
-    }
-
-    public void setLength(String length) {
-        this.length = length;
     }
 
     public String getFilePath() {
@@ -57,8 +50,13 @@ public class File {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        return ((File) obj).getIdFile() == this.getIdFile();
+    }
+
+    @Override
     public String toString() {
-        return "The audio file have the title " + fileName + ", author " + author + " and length " + length;
+        return  fileName + ", author " + author + " and length " + length;
     }
 
 }

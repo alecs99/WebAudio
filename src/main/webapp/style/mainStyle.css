@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+*{
+    font-family: 'Roboto',sans-serif;
+}
+body{
+    background: url(../assets/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color:white;
+}
+a:visited{
+    color: #ffffff;
+}

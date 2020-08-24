@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+body{
+    background-color: rgb(46, 53, 61);
+    font-family: 'Roboto',sans-serif;
+    color: white;
+}
+a:visited{
+    color: #ffffff;
+}
+.card{
+    margin-left: 0.7%;
+    margin-top: 1%;
+    max-width: 350px;
+    color: black !important;
+    background-color: rgba(207, 235, 251, 1);
+}
+#controls{
+    text-align: center;
+    margin-top: 1%;
+}
+#soundWave{
+    margin-left: 16.5%;
+    margin-right: 2%;
+    margin-top: 1.5%;
+    margin-bottom: 3%;
+}
+#filePath{
+    visibility: hidden;
+    float: right;
+    width:5px;
+}
+#form{
+    position: fixed;
+    top: 51%;
+    left:40%;
+    display: block;
+    visibility: hidden;
+}
+#leftChannel{
+    width: 15%;
+    position: fixed;
+    top:12.5%;
+}
+#rightChannel{
+    width: 15%;
+    position: fixed;
+    top:28.5%;
+}
+button{
+    background-color:transparent;
+    border-color:transparent;
+    color: white;
+}
+button:disabled{
+    color: grey;
+}
+#optionsCard{
+    margin-left: 1%;
+}
+#drop{
+    width: 1000px;
+    height:100px;
+    border-width: 2px;
+    border-style: dashed;
+    margin-left: 12%;
+    margin-top: 3%;
+}
+#currentTimeContainer{
+    text-align: center;
+}

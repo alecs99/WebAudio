@@ -8,7 +8,7 @@ import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-
+/*Partea de criptare a parolei*/
 public class AES {
 
     private static SecretKeySpec secretKey;
@@ -24,10 +24,7 @@ public class AES {
             key = Arrays.copyOf(key, 16);
             secretKey = new SecretKeySpec(key, "AES");
         }
-        catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        catch (UnsupportedEncodingException e) {
+        catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }

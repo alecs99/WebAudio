@@ -35,13 +35,12 @@ public class LoginServlet extends HttpServlet {
             if(user.getUsername().equals(username) && user.getPassword().equals(password)){
                 HttpSession session = req.getSession();
                 session.setAttribute("loggedUser", user);
-//                req.setAttribute("loggedUser", user);
                 RequestDispatcher rs = req.getRequestDispatcher("OptionsServlet");
                 rs.forward(req,resp);
             }
         }
-        PrintWriter out = resp.getWriter();
-        out.println("<h1>Ops! User or password don't match!  <a href='loginServlet'>Try again</a></h1>");
+        RequestDispatcher rs = req.getRequestDispatcher("loginFailed.jsp");
+        rs.forward(req,resp);
     }
 
     @Override
